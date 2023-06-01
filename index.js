@@ -8,6 +8,13 @@
  */
 function nesneyiTrimle(obj) {
   // ✨ kodlar buraya
+  const trimmedObj = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      trimmedObj[key] = obj[key].trim();
+    }
+  }
+  return trimmedObj;
 }
 
 /**
@@ -20,6 +27,13 @@ function nesneyiTrimle(obj) {
  */
 function verileniTrimle(obj, prop) {
   // ✨ kodlar buraya
+   const trimmedObj = {};
+   for (const key in obj) {
+     if (obj.hasOwnProperty(key)) {
+       trimmedObj[key] = obj[key].trim();
+     }
+   }
+   return trimmedObj;
 }
 
 /**
@@ -39,9 +53,8 @@ function Sayici(ilkSayi) {
    * [Görev 4A] Sayici bir sayaç oluşturur
    * @param {number} ilkSayi - Sayacin ilk değeri
    */
-  
+
   // ✨ gerekli propları ekleyin
-  
 
   /**
    * [Görev 4B] asagiSay metodu sıfıra doğru sayar
@@ -57,7 +70,7 @@ function Sayici(ilkSayi) {
    */
   this.asagiSay = () => {
     // ✨ kodlar buraya
-  }
+  };
 }
 
 function Mevsimler() {
@@ -81,7 +94,7 @@ function Mevsimler() {
    */
   this.sonraki = () => {
     // ✨ kodlar buraya
-  }
+  };
 }
 
 function Araba(/*kodlar buraya */) {
@@ -91,12 +104,10 @@ function Araba(/*kodlar buraya */) {
    * @param {number} depo - benzin deposu kapasitesi
    * @param {number} kml - arabanın litre başına kat edebileceği km yol
    */
- 
-    this.odometer = 0 // araba 0 kilometrede yüklenecek
-    this.depo = depoBenzin // araba full depoyla yüklenecek
-    // ✨ gerekli propları ekleyin
 
-  
+  this.odometer = 0; // araba 0 kilometrede yüklenecek
+  this.depo = depoBenzin; // araba full depoyla yüklenecek
+  // ✨ gerekli propları ekleyin
 
   /**
    * [Görev 6B] sur metodu odometera km ekler ve aynı oranda depodan benzin tüketir
@@ -113,7 +124,7 @@ function Araba(/*kodlar buraya */) {
    */
   this.sur = (gidilecekyol) => {
     // ✨ kodlar buraya
-  }
+  };
 
   /**
    * [Görev 6C] Depoya benzin ekleme
@@ -128,7 +139,7 @@ function Araba(/*kodlar buraya */) {
    */
   this.benzinal = (litre) => {
     // ✨ kodlar buraya
-  }
+  };
 }
 
 /**
@@ -156,4 +167,4 @@ module.exports = {
   Sayici,
   Mevsimler,
   Araba,
-}
+};
