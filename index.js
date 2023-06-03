@@ -208,10 +208,27 @@ console.log(focus.sur(700)); //1200
  *    // sonuç false
  * })
  */
-function asenkronCiftSayi(sayi) {
-  // ✨ implement
+function senkronCiftSayi(sayi) {
+  return sayi % 2 == 0;
 }
+senkronCiftSayi(5); //false
+senkronCiftSayi(4); //true
 
+function asenkronCiftSayi(sayi) {
+  return new Promise((res) => {
+    res(sayi % 2 == 0);
+  });
+}
+asenkronCiftSayi(4).then((result) => {
+  console.log(result);
+});
+asenkronCiftSayi(6).then(function (result) {
+  console.log(result);
+});
+
+asenkronCiftSayi(3).then((result) => {
+  console.log(result);
+});
 module.exports = {
   nesneyiTrimle,
   verileniTrimle,

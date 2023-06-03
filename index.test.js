@@ -152,6 +152,15 @@ describe("[Görev 6] Araba", () => {
 });
 
 describe("[Görev 7] asenkronCiftSayi", () => {
-  // test('[19] bir çift sayı verilirse true çözümlüyor', () => {})
-  // test('[20] tek sayı verilirse false çözümlüyor', () => {})
+  test("[19] bir çift sayı verilirse true çözümlüyor", () => {
+    utils.asenkronCiftSayi(4).then((res) => {
+      //assert
+      expect(res).toBeTruthy();
+    });
+  });
+  test("[20] tek sayı verilirse false çözümlüyor", async () => {
+    let actual = await utils.asenkronCiftSayi(3);
+    //assert
+    expect(actual).toBeFalsy();
+  });
 });
