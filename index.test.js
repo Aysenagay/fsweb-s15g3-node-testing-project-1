@@ -14,7 +14,7 @@ describe("[Görev 2] verileniTrimle", () => {
   test("[3] verilen propu trimliyor", () => {
     let model = { isim: "  jane  ", yas: " 34 " };
     let expected = { isim: "jane", yas: " 34 " };
-    
+
     let actual = utils.verileniTrimle(model, "isim");
 
     expect(actual).toEqual(expected);
@@ -29,7 +29,13 @@ describe("[Görev 2] verileniTrimle", () => {
 });
 
 describe("[Görev 3] enBuyukTamsayiyiBul", () => {
-  // test('[5] bir dizi nesne içindeki en büyük tamsayiyi döndürüyor { tamsayi: 2 }', () => {})
+  test("[5] bir dizi nesne içindeki en büyük tamsayiyi döndürüyor { tamsayi: 2 }", () => {
+    let tamsayilar = [{ tamsayi: 1 }, { tamsayi: 3 }, { tamsayi: 2 }];
+    let expected = { tamsayi: 3 };
+
+    let actual = utils.enBuyukTamsayiyiBul(tamsayilar);
+    expect(actual).toEqual(expected);
+  });
 });
 
 describe("[Görev 4] Sayici", () => {

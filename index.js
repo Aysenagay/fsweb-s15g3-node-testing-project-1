@@ -45,6 +45,16 @@ console.log(verileniTrimle({ isim: "  jane  ", yas: " 34 " }, "isim"));
  */
 function enBuyukTamsayiyiBul(tamsayilar) {
   // ✨ kodlar buraya
+  let max = -Infinity;
+  let maxDegerIndex = 0;
+  for (let i = 0; i < tamsayilar.length; i++) {
+    const item = tamsayilar[i];
+    if (item.tamsayi > max) {
+      maxDegerIndex = i;
+      max = item.tamsayi;
+    }
+  }
+  return tamsayilar[maxDegerIndex];
 }
 
 function Sayici(ilkSayi) {
