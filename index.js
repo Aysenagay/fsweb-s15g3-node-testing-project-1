@@ -96,6 +96,8 @@ function Mevsimler() {
    */
 
   // ✨ gerekli propları ekleyin
+  let mevsimler = ["ilkbahar", "yaz", "sonbahar", "kış"];
+  let currentIndex = 0;
 
   /**
    * [Görev 5B] sonraki metodu bir sonraki mevsimi gösterir
@@ -111,10 +113,14 @@ function Mevsimler() {
    */
   this.sonraki = () => {
     // ✨ kodlar buraya
+    currentIndex = currentIndex + 1;
+    currentIndex = currentIndex % 4; //mod alma
+    let mevsim = mevsimler[currentIndex];
+    return mevsim;
   };
 }
 
-function Araba(/*kodlar buraya */) {
+function Araba(isim, depoBenzin, kml) {
   /**
    * [Görev 6A] Araba 3 argüman alarak bir araba nesnesi oluşturur
    * @param {string} isim - arabanın ismi
@@ -124,6 +130,7 @@ function Araba(/*kodlar buraya */) {
 
   this.odometer = 0; // araba 0 kilometrede yüklenecek
   this.depo = depoBenzin; // araba full depoyla yüklenecek
+  this.maxDepo = depoBenzin;
   // ✨ gerekli propları ekleyin
 
   /**
@@ -132,7 +139,7 @@ function Araba(/*kodlar buraya */) {
    * @returns {number} - güncellenen odometer değeri
    *
    * ÖRNEK
-   * const focus = new Araba('focus', 20, 30)
+   * const focus = new Araba('focus', 20, 30) // maxMesafe = 600km
    * focus.sur(100) // 100 döndürür
    * focus.sur(100) // 200 döndürür
    * focus.sur(100) // 300 döndürür
@@ -140,7 +147,16 @@ function Araba(/*kodlar buraya */) {
    * focus.sur(200) // 600 döndürür (100 km sonra benzin bitti)
    */
   this.sur = (gidilecekyol) => {
-    // ✨ kodlar buraya
+    let maxMesafe = kml * this.depo; //gidebileceğim max mesafe(güncel), her adımda değişiyor.
+    if (gidilecekyol <= maxMesafe) {
+      this.odometer = this.odometer + gidilecekyol; //kümülatif artırıyoruz.
+      let harcananBenzin = gidilecekyol / kml;
+      this.depo = this.depo - harcananBenzin;
+      return this.odometer;
+    }
+    this.depo = 0;
+    this.odometer = this.odometer + maxMesafe;
+    return this.odometer;
   };
 
   /**
@@ -150,14 +166,34 @@ function Araba(/*kodlar buraya */) {
    *
    * ÖRNEK
    * const focus = new Araba('focus', 20, 30)
-   * focus.sur(600) // 600 döndürür
-   * focus.sur(1) // 600 döndürür (depo boş olduğundan yol gidilemedi)
+   * focus.sur(600)     // 600 döndürür
+   * focus.sur(1)       // 600 döndürür (depo boş olduğundan yol gidilemedi)
    * focus.benzinal(99) // 600 döndürür (depo yalnızca 20 litre alabiliyor)
    */
   this.benzinal = (litre) => {
     // ✨ kodlar buraya
+    let kalanDepo = this.maxDepo - this.depo;
+    let maxGidilecekKm;
+    if (litre <= kalanDepo) {
+      this.depo = this.depo + litre;
+      maxGidilecekKm = this.depo * kml;
+      return maxGidilecekKm;
+    }
+
+    this.depo = this.maxDepo;
+    maxGidilecekKm = this.depo * kml;
+    return maxGidilecekKm;
   };
 }
+const focus = new Araba("focus", 20, 30);
+console.log(focus.sur(100));
+console.log(focus.sur(100));
+console.log(focus.sur(100));
+console.log(focus.sur(200));
+console.log(focus.sur(900));
+
+focus.benzinal(50);
+console.log(focus.sur(700)); //1200
 
 /**
  * [Görev 7] Bir sayının çift olup olmadığını asenkron olarak çözümler

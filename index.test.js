@@ -69,12 +69,48 @@ describe("[Görev 5] Mevsimler", () => {
   beforeEach(() => {
     mevsimler = new utils.Mevsimler(); // her test yeni bir mevsimle başlar
   });
-  // test('[9] mevsimler.sonraki İLK çağırılışında "yaz" döndürüyor', () => {})
-  // test('[10] mevsimler.sonraki İKİNCİ çağırılışında "sonbahar" döndürüyor', () => {})
-  // test('[11] mevsimler.sonraki ÜÇÜNCÜ çağırılışında "kış" döndürüyor', () => {})
-  // test('[12] mevsimler.sonraki DÖRDÜNCÜ çağırılışında "ilkbahar" döndürüyor', () => {})
-  // test('[13] mevsimler.sonraki BEŞİNCİ çağırılışında "yaz" döndürüyor', () => {})
-  // test('[14] mevsimler.sonraki KIRKINCI çağırılışında "ilkbahar" döndürüyor', () => {})
+  test('[9] mevsimler.sonraki İLK çağırılışında "yaz" döndürüyor', () => {
+    let actual = mevsimler.sonraki();
+
+    expect(actual).toBe("yaz");
+  });
+  test('[10] mevsimler.sonraki İKİNCİ çağırılışında "sonbahar" döndürüyor', () => {
+    mevsimler.sonraki();
+    let actual = mevsimler.sonraki();
+
+    expect(actual).toBe("sonbahar");
+  });
+  test('[11] mevsimler.sonraki ÜÇÜNCÜ çağırılışında "kış" döndürüyor', () => {
+    mevsimler.sonraki();
+    mevsimler.sonraki();
+    let actual = mevsimler.sonraki();
+
+    expect(actual).toBe("kış");
+  });
+  test('[12] mevsimler.sonraki DÖRDÜNCÜ çağırılışında "ilkbahar" döndürüyor', () => {
+    mevsimler.sonraki();
+    mevsimler.sonraki();
+    mevsimler.sonraki();
+    let actual = mevsimler.sonraki();
+
+    expect(actual).toBe("ilkbahar");
+  });
+  test('[13] mevsimler.sonraki BEŞİNCİ çağırılışında "yaz" döndürüyor', () => {
+    for (let i = 0; i < 4; i++) {
+      mevsimler.sonraki();
+    }
+    let actual = mevsimler.sonraki();
+
+    expect(actual).toBe("yaz");
+  });
+  test('[14] mevsimler.sonraki KIRKINCI çağırılışında "ilkbahar" döndürüyor', () => {
+    for (let i = 0; i < 39; i++) {
+      mevsimler.sonraki();
+    }
+    let actual = mevsimler.sonraki();
+
+    expect(actual).toBe("ilkbahar");
+  });
 });
 
 describe("[Görev 6] Araba", () => {
@@ -82,10 +118,37 @@ describe("[Görev 6] Araba", () => {
   beforeEach(() => {
     focus = new utils.Araba("focus", 20, 30); // her test yeni bir araba oluşturur
   });
-  // test('[15] arabayı sürünce güncellenmiş odometer döndürüyor', () => {})
-  // test('[16] arabayı sürmek benzin tüketiyor', () => {})
-  // test('[17] benzinalma arabayı sürmeye izin veriyor', () => {})
-  // test('[18] dolu depoya benzin alma etki etmiyor', () => {})
+  test("[15] arabayı sürünce güncellenmiş odometer döndürüyor", () => {
+    focus.sur(100);
+    let actual = focus.sur(200);
+  });
+  test("[16] arabayı sürmek benzin tüketiyor", () => {
+    focus.sur(100);
+    focus.sur(100);
+    focus.sur(100);
+    //
+    expect(focus.depo).toBe(10);
+  });
+  test("[17] benzinalma arabayı sürmeye izin veriyor", () => {
+    focus.sur(100); //100
+    focus.sur(100); //200
+    focus.sur(100); //300
+    focus.sur(200); //500
+    focus.sur(200); //600
+    focus.benzinal(10);
+    //act
+    let actual = focus.sur(300);
+    //assert
+    expect(actual).toBe(900);
+  });
+  test("[18] dolu depoya benzin alma etki etmiyor", () => {
+    focus.sur(600); //600
+    focus.benzinal(50);
+    //act
+    let actual = focus.sur(600);
+    //assert
+    expect(actual).toBe(1200);
+  });
 });
 
 describe("[Görev 7] asenkronCiftSayi", () => {
