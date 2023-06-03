@@ -8,13 +8,13 @@
  */
 function nesneyiTrimle(obj) {
   // ✨ kodlar buraya
-  const trimmedObj = {};
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      trimmedObj[key] = obj[key].trim();
+  for (let prop in obj) {
+    let val = obj[prop];
+    if (typeof val == "string") {
+      obj[prop] = val.trim();
     }
   }
-  return trimmedObj;
+  return obj;
 }
 
 /**
@@ -27,14 +27,13 @@ function nesneyiTrimle(obj) {
  */
 function verileniTrimle(obj, prop) {
   // ✨ kodlar buraya
-   const trimmedObj = {};
-   for (const key in obj) {
-     if (obj.hasOwnProperty(key)) {
-       trimmedObj[key] = obj[key].trim();
-     }
-   }
-   return trimmedObj;
+  let val = obj[prop];
+  if (typeof val == "string") {
+    obj[prop] = val.trim();
+  }
+  return obj;
 }
+console.log(verileniTrimle({ isim: "  jane  ", yas: " 34 " }, "isim"));
 
 /**
  * [Görev 3] enBuyukTamsayiyiBul bir dizi nesne içinde bulunan tamsayılardan en büyük olanı bulur { tamsayi: 1 }
