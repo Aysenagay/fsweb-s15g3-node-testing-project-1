@@ -43,9 +43,25 @@ describe("[Görev 4] Sayici", () => {
   beforeEach(() => {
     sayici = new utils.Sayici(3); // her test yeni bir sayı ile başlatılıyor
   });
-  // test('[6] sayici.asagiSay ilk çağırılışında başlangıç sayışını yapıyor', () => {})
-  // test('[7] sayici.asagiSay İKİNCİ çağırılışında başlangıç eksi 1 sayıyor', () => {})
-  // test('[8] sayıcı sonunda sıfıra ulaşır ama daha aşağı saymaz', () => {})
+  test("[6] sayici.asagiSay ilk çağırılışında başlangıç sayışını yapıyor", () => {
+    let actual = sayici.asagiSay();
+
+    expect(actual).toBe(3);
+  });
+  test("[7] sayici.asagiSay İKİNCİ çağırılışında başlangıç eksi 1 sayıyor", () => {
+    sayici.asagiSay();
+    let actual = sayici.asagiSay();
+
+    expect(actual).toBe(2);
+  });
+  test("[8] sayıcı sonunda sıfıra ulaşır ama daha aşağı saymaz", () => {
+    for (let i = 0; i < 999; i++) {
+      sayici.asagiSay();
+    }
+    let actual = sayici.asagiSay();
+    //assert
+    expect(actual).toBe(0);
+  });
 });
 
 describe("[Görev 5] Mevsimler", () => {

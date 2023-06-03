@@ -64,6 +64,7 @@ function Sayici(ilkSayi) {
    */
 
   // ✨ gerekli propları ekleyin
+  let globalSayi = ilkSayi;
 
   /**
    * [Görev 4B] asagiSay metodu sıfıra doğru sayar
@@ -79,8 +80,15 @@ function Sayici(ilkSayi) {
    */
   this.asagiSay = () => {
     // ✨ kodlar buraya
+    return ilkSayi <= 0 ? 0 : ilkSayi--;
   };
 }
+const sayac = new Sayici(3);
+console.log(sayac.asagiSay());
+console.log(sayac.asagiSay());
+console.log(sayac.asagiSay());
+console.log(sayac.asagiSay());
+console.log(sayac.asagiSay());
 
 function Mevsimler() {
   /**
